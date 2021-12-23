@@ -30,10 +30,26 @@ body{
 }
 .btn4{
     width: 100px;
-    height: 50px;
+    height: 45px;
     position: absolute;
-    top: 80%;
-    left: 47%;
+    top: 85%;
+    left: 43%;
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: #30475E;
+    color: #D6E0F0;
+}
+.card-body {
+    font-size: 15px;
+    padding: 10px;
+}
+
+.btn5{
+    width: 100px;
+    height: 45px;
+    position: absolute;
+    top: 85%;
+    left: 50%;
     font-size: 15px;
     border-radius: 10px;
     background-color: #30475E;

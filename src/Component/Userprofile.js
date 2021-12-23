@@ -2,10 +2,12 @@ import React,{ useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../userprofile.css';
 import Userdetails from "./Userdetails";
+import Signup from "./Signup";
 function Userprofile(props){
     const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   const [signin,setSign]=useState(false)
+  const [logout,setLogout]=useState(false)
   const handleImageUpload = e => {
     const [file] = e.target.files;
     if (file) {
@@ -20,6 +22,11 @@ function Userprofile(props){
   };
   if(signin){
     return <Userdetails/>
+
+}
+
+if(logout){
+  return <Signup/>
 
 }
     return(
@@ -79,13 +86,14 @@ function Userprofile(props){
             {props.userdataemail }
             </div>
             <div className="card-body">
-            <label>Phoneno: &nbsp;</label>
+            <label>Phone Number: &nbsp;</label>
             {props. userdataphone }
             </div>
           
              </div>
              </div>
              <button className="btn4" onClick={()=>setSign(true)}>Edit Profile</button>
+             <button className="btn5" onClick={()=>setLogout(true)}>Logout</button>
              </div>
     )
 }

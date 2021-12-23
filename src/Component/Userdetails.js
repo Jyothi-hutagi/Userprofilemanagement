@@ -34,15 +34,15 @@ function Userdetails(){
             <div className="container2">
             <div className="form-group">
             <label className="form-label">Name</label>
-            <input type='text' className="form-control" name="name" onChange={inputHandlerr}required />
+            <input type='text' className="form-control" name="name" onChange={inputHandlerr} required />
             </div>
             <div className="form-group">
             <label className="form-label"> Address</label>
-            <textarea name="address" className="form-control" rows={4} cols={4} onChange={inputHandlerr}required></textarea>
+            <textarea name="address" className="form-control" maxLength={50} onChange={inputHandlerr} required></textarea>
             </div>
             <div className="form-group">
             <label className="form-label">Date of Birth</label>
-            <input type='date' className="form-control" name="date"onChange={inputHandlerr}required/>
+            <input type='date' className="form-control" name="date"onChange={inputHandlerr} required/>
             </div>
             <div className="form-group">
             <label className="form-label">Email</label>
@@ -50,7 +50,7 @@ function Userdetails(){
             </div>
             <div className="form-group">
             <label className="form-label">Phoneno</label>
-            <input type='phone' className="form-control" name="phone" onChange={inputHandlerr}required />
+            <input type='phone' className="form-control" name="phone" onChange={inputHandlerr} required />
             </div>
              <div className="btn3">
             <button className="btn-success" onClick={()=>setSave(true)}>Save</button>

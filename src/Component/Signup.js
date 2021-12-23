@@ -58,7 +58,7 @@ function Signup() {
            </div>
            <div className="form-group">
            <label className="form-label"> Confirm Password</label>
-           <input type='password' value={confirmPassword} className="form-control"name="repassword"placeholder="Confirm your password"onChange={(e)=>checkValidation(e)}required/>
+           <input type='password' value={confirmPassword} className="form-control"name="repassword"placeholder="Confirm your password"onChange={(e)=>checkValidation(e)} required/>
            </div>
 
            <div className="btn1">
