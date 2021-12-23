@@ -3,7 +3,9 @@ import Signin from "./Signin";
 import'../Signup.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function Signup() {
-  
+     const[isError,setIsError]=useState("");
+     const[password,setPassword]=useState("");
+     const[confirmPassword,setConfirmPassword]=useState("");
     const[isSubmit,setSubmit]=React.useState(false)
     const [signin,setSign]=useState(false)
     const [user,setUser]=useState({name:'',email:'',password:'',repassword:''})
@@ -22,11 +24,24 @@ function Signup() {
     if (isSubmit){
         return <Signin/>
     }
+    const checkValidation=(e)=>{
+        const confirmPassword=e.target.value;
+        setConfirmPassword(confirmPassword);
+        if(password!=confirmPassword){
+            setIsError("Password did-not match");
+        } else
+        {
+            setIsError('');
+        }
+    };
   
    
     return (
       <div className="App">
        <h1 className="form-header">Signup Form</h1>
+       <div style={{position:"absolute" ,top:600,marginLeft:660 ,fontSize:20,}}>
+           {isError}
+       </div>
        <form className="container">
           <div className="form-group">
               <label className="form-label"> Username</label>
@@ -39,11 +54,11 @@ function Signup() {
           </div>
           <div className="form-group">
           <label className="form-label"> Password</label>
-          <input type='password' id="password" className="form-control"name="password" placeholder="Enter password"  onChange={inputHandler} required/>
+          <input type='password' value={password} className="form-control"name="password" placeholder="Enter password"  onChange={(e)=>setPassword(e.target.value)} required/>
            </div>
            <div className="form-group">
            <label className="form-label"> Confirm Password</label>
-           <input type='password' id="password-confirm" className="form-control"name="repassword"placeholder="re-confirm your password"onChange={inputHandler}required/>
+           <input type='password' value={confirmPassword} className="form-control"name="repassword"placeholder="Confirm your password"onChange={(e)=>checkValidation(e)}required/>
            </div>
 
            <div className="btn1">
