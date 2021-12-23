@@ -1,0 +1,45 @@
+.container{
+    border: 1px solid black;
+    width: 40%;
+    position: absolute;
+    top: 10%;
+    left: 28%;
+    height: 65%;
+    background-color:#393E46;
+    border-radius: 20px;
+
+}
+.form-label{
+    font-size: 15px;
+    margin-top: 3%;
+    color: #CFD3CE;
+}
+
+
+.form-control{
+    justify-content: center;
+    width:60%;
+    position: relative;
+     left: 20%;
+     border-radius: 15px;
+}
+.form-header{
+    margin-top: 20px;
+    font-size: 30px;
+    color: #2B2B2B;
+}
+#btn{
+    height:40px;
+    width: 90px;
+    border-radius: 20px;
+    font-size: 15px;
+    background-color:#92967D ;
+    color: black;
+}
+.btn2{
+    font-size: 18px;
+    margin-top: 10px;
+}
+h5{
+    color:  #CFD3CE;
+}

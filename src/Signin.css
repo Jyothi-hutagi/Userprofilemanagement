@@ -1,0 +1,15 @@
+h1{
+    margin-top: 20px;
+}
+
+.container1{
+    border: 1px solid black;
+    width: 40%;
+    position: absolute;
+    top: 10%;
+    left: 28%;
+    height: 65%;
+    background-color:#393E46;;
+    border-radius: 20px;
+
+}

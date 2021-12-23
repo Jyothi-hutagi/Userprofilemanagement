@@ -1,0 +1,17 @@
+.container2{
+    border: 1px solid black;
+    width: 40%;
+    position: absolute;
+    top: 12%;
+    left: 28%;
+    height: 83%;
+    background-color:#393E46;
+    border-radius: 20px;
+
+}
+.btn3{
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+

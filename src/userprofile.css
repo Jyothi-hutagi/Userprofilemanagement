@@ -1,0 +1,41 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #F1F6F9;
+}
+
+.main{
+    position: absolute;
+    top: 40%;
+    width: 30%;
+    left:35%;
+    padding: 30px;
+    border-radius: 50px;
+    color: #D6E0F0;
+
+}
+.card{
+    background-color: #221F3B;
+}
+
+.page-header{
+    font-size: 40px;
+    color: darkslateblue;
+}
+
+.header{
+    color:#30475E;
+    font-size: 30px;
+    font-weight: bold;
+}
+.btn4{
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 80%;
+    left: 47%;
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: #30475E;
+    color: #D6E0F0;
+}
