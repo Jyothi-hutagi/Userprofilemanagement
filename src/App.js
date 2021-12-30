@@ -1,10 +1,10 @@
 import React from 'react'
 import'./App.css';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
-import Signup from "./Component/Signup";
-import Signin from './Component/Signin';
-import Userdetails from './Component/Userdetails';
-import Userprofile from './Component/Userprofile';
+import Signup from "./Signup";
+import Signin from './Signin';
+import Userdetails from './Userdetails';
+import Userprofile from './Userprofile';
 function App() {
   return (
     <div className="App">
@@ -13,13 +13,13 @@ function App() {
      <Route path={"/"} exact component={Signup}>
          <Signup/>
        </Route>
-       <Route path={"./Component/Signin.js"} exact component={Signin}>
+       <Route path={"./Signin.js"} exact component={Signin}>
          <Signin/>
        </Route>
-       <Route path={"./Component/Userdetails.js"} exact component={Userdetails}>
+       <Route path={"./Userdetails.js"} exact component={Userdetails}>
          <Userdetails/>
        </Route>
-       <Route path={"./Component/Userprofile.js"} exact component={Userprofile}>
+       <Route path={"./Userprofile.js"} exact component={Userprofile}>
          <Userprofile/>
        </Route>
        

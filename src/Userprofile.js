@@ -1,23 +1,55 @@
 import React,{ useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../userprofile.css';
+import './userprofile.css';
 import Userdetails from "./Userdetails";
 import Signup from "./Signup";
+import {auth, db, storagee } from './firebase';
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore/lite";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 function Userprofile(props){
     const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   const [signin,setSign]=useState(false)
   const [logout,setLogout]=useState(false)
-  const handleImageUpload = e => {
+  const [prog, setProg] = React.useState();
+  const [uploaded,setUploaded] = React.useState(false)
+  const[currentUser, setcurrentuser] = React.useState()
+
+  
+  // const ReactFirebaseFileUpload = ()=>{
+  //   const [image,setImage]=useState('');
+  //   const handleChange = e=>{
+  //     if (e.target.files[0]){
+  //       setImage(e.target.files[0]);
+  //     }
+  //   };
+    
+  // }
+  const handleImageUpload =async(e) => {
     const [file] = e.target.files;
     if (file) {
-      const reader = new FileReader();
-      const { current } = uploadedImage;
-      current.file = file;
-      reader.onload = e => {
-        current.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
+      const uploadTask = ref(storagee,`${props.currentUser.uid}`);
+      console.log(currentUser)
+      const storageRef = uploadBytesResumable(uploadTask, file)
+      storageRef.on("state_changed",(snapshot) => {
+        const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) *100)
+        setProg(prog)
+        setUploaded(true)
+      },(error)=>console.log(error),
+      ()=>{
+        getDownloadURL(storageRef.snapshot.ref)
+        .then(url => {
+          setUploaded(false)
+          console.log("url",url)
+          try{
+             updateDoc(doc(db, "users", props.currentUser.uid),{
+              image:url
+               })
+              }catch(error){
+                console.log(error)
+              }})
+      }  
+      )  
     }
   };
   if(signin){
@@ -29,7 +61,7 @@ if(logout){
   return <Signup/>
 
 }
-    return(
+ return(
         <div className="app">
             <h1 className="page-header">My Profile</h1>
             <div
@@ -64,7 +96,8 @@ if(logout){
             width: "223px",
             height: "200px",
            marginLeft:"-2px",
-           borderRadius:"30px"
+           borderRadius:"30px",
+           alt:"profile"
           }}
         />
       </div>
@@ -79,7 +112,7 @@ if(logout){
             </div>
             <div className="card-body">
             <label>Date of Birth: &nbsp;</label>
-            {props. userdatadate}
+            {props.userdatadate}
             </div>
             <div className="card-body">
             <label>Email: &nbsp;</label>
@@ -87,7 +120,7 @@ if(logout){
             </div>
             <div className="card-body">
             <label>Phone Number: &nbsp;</label>
-            {props. userdataphone }
+            {props.userdataphone }
             </div>
           
              </div>

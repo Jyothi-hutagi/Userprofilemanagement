@@ -2,11 +2,12 @@
     border: 1px solid black;
     width: 40%;
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 28%;
     height: 65%;
     background-color:#393E46;
     border-radius: 20px;
+    padding-top: 1%;
 
 }
 .form-label{
@@ -24,7 +25,7 @@
      border-radius: 15px;
 }
 .form-header{
-    margin-top: 20px;
+    margin-top: 40px;
     font-size: 30px;
     color: #2B2B2B;
 }

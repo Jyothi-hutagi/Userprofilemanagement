@@ -1,20 +1,23 @@
 import React,{ useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {db} from './firebase'
 import Userprofile from "./Userprofile";
-import '../Userdetails.css';
+import { auth } from './firebase';
+import { updateDoc,doc } from "firebase/firestore/lite";
+import { onAuthStateChanged } from "firebase/auth";
+import './Userdetails.css';
 function Userdetails(){
-   
-     const [signin,setSign]=useState(false)
-    
-     if(signin){
-        console.log(signin)
-        return <Userprofile/>
-
-    }
-
     const[save,setSave]=React.useState(false);
     const[userdata,setUserdata]=React.useState({name:'',address:'',date:'',email:'',phone:''})
+    const[currentUser, setcurrentuser] = React.useState()
+    // console.log("props.currentUser.uid",props.currentUser)
 
+
+    onAuthStateChanged(auth,(user)=>{
+        //console.log('users',user)
+        setcurrentuser(user)
+        // console.log("currentUser",currentUser)
+      })
 
      if(save){
          return <Userprofile userdataname={userdata.name} userdataaddress={userdata.address} userdatadate={userdata.date} userdataemail={userdata.email} userdataphone={userdata.phone} />
@@ -23,12 +26,32 @@ function Userdetails(){
          e.preventDefault()
          const{name,value}=e.target
          setUserdata({...userdata,[name]:value})
-         console.log('userdata',userdata.name)
+        //  console.log('userdata',userdata.name)
      }
-     
+        
+
+        const datastore  =async(e)=>{
+
+        e.preventDefault();
+        try{
+            console.log("props.currentUser.uid",currentUser.uid)
+        await updateDoc(doc(db, "users",currentUser.uid),
+        {
+            name: userdata.name,
+            address: userdata.address,
+            date: userdata.date,
+            email: userdata.email,
+            phone:userdata.phone
+             })
+             setSave(true)
+      }catch(error){
+          alert(error);
+      
+      }   
+    }
     return(
         <div className="page-header">
-        <h1> Edit Profile</h1>
+        <h1 className="heading"> Edit Profile</h1>
         <form>
           
             <div className="container2">
@@ -53,12 +76,10 @@ function Userdetails(){
             <input type='phone' className="form-control" name="phone" onChange={inputHandlerr} required />
             </div>
              <div className="btn3">
-            <button className="btn-success" onClick={()=>setSave(true)}>Save</button>
+            <button className="btn-success" onClick={datastore}>Save</button>
             </div>
             </div>
-       
-
-        </form>
+            </form>
         </div>
     )
 }
